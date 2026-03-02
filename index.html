@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SGILAB — Lab. Cómputo FCE-II · P5-206</title>
+<title>SGILAB — Laboratorio de Cómputo FCE "II" · P5-206</title>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
@@ -17,6 +17,64 @@
   --r:8px;--r2:12px;--shadow:0 4px 24px rgba(0,0,0,.5);
   --glow-c:0 0 24px rgba(0,212,255,.18);
 }
+
+/* ── MODO CLARO ── */
+body.light-mode{--bg:#f0f4f8;--bg2:#e2eaf3;--bg3:#d8e2ef;--bg4:#ccd8e8;--panel:#e8eef7;--border:#b8cce0;--border2:#9ab5d0;--text:#0f1f33;--text2:#2d4a6a;--text3:#7a9ab8;--glow-c:0 0 24px rgba(0,150,200,.12);}
+body.light-mode header{background:rgba(240,244,248,.96);}
+body.light-mode .eq-card,body.light-mode .stat,body.light-mode .rcard,body.light-mode .tbl-wrap,body.light-mode .acard,body.light-mode .activity-panel{background:var(--panel);}
+body.light-mode input,body.light-mode select,body.light-mode textarea{background:rgba(0,0,0,.04);color:var(--text);}
+body.light-mode tbody tr:hover{background:rgba(0,150,200,.06);}
+body.light-mode .modal{background:var(--bg2);}
+body.light-mode .filter-sel{background:var(--panel);color:var(--text2);}
+body.light-mode .search-box{background:var(--panel);}
+body.light-mode .aut-hero{background:linear-gradient(160deg,rgba(0,150,200,.08) 0%,rgba(59,130,246,.08) 100%);}
+body.light-mode .pg-btn{background:var(--panel);}
+body.light-mode .chess-room{background:rgba(220,230,245,.97);}
+body.light-mode .cb-dark{background:rgba(180,200,225,.6);}
+body.light-mode .cb-light{background:rgba(200,215,235,.4);}
+body.light-mode .mobile-nav{background:rgba(240,244,248,.98);}
+body.light-mode body::before{background:radial-gradient(ellipse 60% 40% at 80% 10%,rgba(0,150,200,.05) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 10% 80%,rgba(59,130,246,.05) 0%,transparent 60%);}
+
+/* ── RELOJ HEADER ── */
+.header-clock{display:flex;flex-direction:column;align-items:flex-end;margin-left:4px;}
+.clock-time{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--cyan);letter-spacing:2px;line-height:1;text-shadow:0 0 10px rgba(0,212,255,.3);}
+.clock-date{font-family:var(--mono);font-size:8px;color:var(--text3);letter-spacing:1px;margin-top:2px;}
+
+/* ── BOTÓN TEMA ── */
+.theme-btn{background:transparent;border:1px solid var(--border);border-radius:var(--r);cursor:pointer;padding:6px 10px;color:var(--text2);font-size:14px;transition:all .2s;display:flex;align-items:center;gap:5px;white-space:nowrap;}
+.theme-btn:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,212,255,.07);}
+
+/* ── LIMPIAR FILTROS ── */
+.clear-filters-btn{display:none;align-items:center;gap:5px;padding:7px 12px;border-radius:var(--r);background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:var(--red);font-family:var(--mono);font-size:11px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.clear-filters-btn:hover{background:rgba(239,68,68,.2);border-color:var(--red);}
+.clear-filters-btn.visible{display:flex;}
+
+/* ── TARJETAS CRÍTICAS PULSANTES ── */
+@keyframes critPulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.5);}60%{box-shadow:0 0 0 8px rgba(239,68,68,.0);}}
+.eq-card.sev-card-crit{border-left:4px solid var(--red)!important;animation:critPulse 2.2s ease-in-out infinite;}
+.eq-card.sev-card-crit .card-head{background:rgba(239,68,68,.06)!important;}
+
+/* ── TOOLTIP HOVER FALLAS ── */
+.card-tooltip-wrap{position:relative;}
+.card-tooltip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--bg2);border:1px solid rgba(239,68,68,.45);border-radius:10px;padding:10px 13px;font-family:var(--mono);font-size:10px;color:var(--red);width:240px;z-index:300;pointer-events:none;opacity:0;transition:opacity .18s;box-shadow:0 8px 28px rgba(0,0,0,.55);line-height:1.7;}
+.card-tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:rgba(239,68,68,.45);}
+.card-tooltip .ct-title{color:var(--amber);font-weight:700;font-size:9px;letter-spacing:1px;display:block;margin-bottom:4px;}
+.falla-chip:hover .card-tooltip,.eq-card .falla-chip{position:relative;}
+.eq-card:hover .falla-chip .card-tooltip{opacity:1;}
+
+/* ── ACTIVIDAD RECIENTE ── */
+.activity-panel{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;}
+.activity-title{font-family:var(--head);font-size:12px;font-weight:700;letter-spacing:1.5px;color:var(--text2);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.activity-list{display:flex;flex-direction:column;}
+.activity-item{display:flex;align-items:flex-start;gap:10px;padding:8px 6px;border-bottom:1px solid rgba(28,45,66,.4);transition:background .15s;border-radius:6px;cursor:pointer;}
+.activity-item:last-child{border-bottom:none;}
+.activity-item:hover{background:rgba(0,212,255,.04);}
+.activity-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:3px;}
+.activity-info{flex:1;min-width:0;}
+.activity-code{font-family:var(--mono);font-size:10px;color:var(--cyan);font-weight:700;}
+.activity-desc{font-size:11px;color:var(--text2);margin-top:1px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.activity-time{font-family:var(--mono);font-size:9px;color:var(--text3);flex-shrink:0;margin-top:2px;text-align:right;}
+.activity-empty{text-align:center;padding:20px;color:var(--text3);font-family:var(--mono);font-size:11px;}
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:var(--body);min-height:100vh;overflow-x:hidden;}
@@ -45,12 +103,12 @@ body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(r
 .ip-last{color:var(--cyan);font-weight:700;background:rgba(0,212,255,.12);padding:1px 5px;border-radius:4px;border:1px solid rgba(0,212,255,.25);}
 
 /* ── HEADER ── */
-header{position:sticky;top:0;z-index:500;background:rgba(6,9,15,.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px;padding:0 24px;height:60px;box-shadow:0 2px 20px rgba(0,0,0,.4);}
+header{position:sticky;top:0;z-index:500;background:rgba(6,9,15,.93);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px;padding:0 24px;min-height:60px;height:auto;padding-top:8px;padding-bottom:8px;box-shadow:0 2px 20px rgba(0,0,0,.4);}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer;}
 .logo-icon{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,rgba(0,212,255,.15),rgba(59,130,246,.15));border:1px solid rgba(0,212,255,.3);display:grid;place-items:center;box-shadow:var(--glow-c);}
 .logo-text{font-family:var(--head);font-size:20px;font-weight:700;letter-spacing:3px;color:var(--text);}
 .logo-text span{color:var(--cyan);}
-.logo-sub{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:2px;display:block;margin-top:-2px;}
+.logo-sub{font-family:var(--mono);font-size:7.5px;color:var(--text3);letter-spacing:.8px;display:block;margin-top:1px;line-height:1.35;max-width:300px;white-space:normal;}
 nav{display:flex;gap:2px;margin-left:auto;}
 .nav-btn{background:transparent;border:none;cursor:pointer;padding:7px 13px;border-radius:var(--r);font-family:var(--head);font-size:13px;font-weight:600;color:var(--text2);letter-spacing:1px;transition:all .2s;display:flex;align-items:center;gap:6px;}
 .nav-btn:hover{color:var(--cyan);background:rgba(0,212,255,.06);}
@@ -349,15 +407,42 @@ select option{background:var(--bg2);}
 
 /* ── AUTHORS ── */
 .authors-wrap{background:var(--panel);border:1px solid var(--border);border-radius:var(--r2);padding:28px;}
-.authors-hd-title{font-family:var(--head);font-size:22px;font-weight:700;letter-spacing:2px;margin-bottom:4px;}
-.authors-hd-sub{font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:1.5px;margin-bottom:24px;}
-.authors-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
-.acard{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:18px;display:flex;gap:14px;align-items:flex-start;transition:border-color .2s,transform .2s;}
-.acard:hover{border-color:rgba(0,212,255,.3);transform:translateY(-2px);}
-.acard-av{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,rgba(0,212,255,.2),rgba(59,130,246,.2));border:2px solid rgba(0,212,255,.2);display:flex;align-items:center;justify-content:center;font-family:var(--head);font-size:20px;font-weight:700;color:var(--cyan);flex-shrink:0;}
-.acard-name{font-family:var(--head);font-size:14px;font-weight:700;color:var(--text);letter-spacing:.5px;}
-.acard-role{font-family:var(--mono);font-size:10px;color:var(--cyan);letter-spacing:1px;margin-top:3px;}
-.acard-code{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:5px;background:rgba(255,255,255,.04);padding:3px 7px;border-radius:4px;border:1px solid var(--border);display:inline-block;}
+/* ── Hero de autores ── */
+/* ── Autores: Link-in-bio ── */
+.aut-hero{background:linear-gradient(160deg,rgba(0,212,255,.06) 0%,rgba(59,130,246,.06) 100%);border:1px solid rgba(0,212,255,.18);border-radius:16px;padding:30px 32px 24px;margin-bottom:28px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:5px;}
+.aut-hero-logo{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,rgba(0,212,255,.25),rgba(59,130,246,.35));border:3px solid rgba(0,212,255,.5);display:flex;align-items:center;justify-content:center;font-family:var(--head);font-size:26px;font-weight:900;color:var(--cyan);margin-bottom:8px;box-shadow:0 0 32px rgba(0,212,255,.22);}
+.aut-hero-title{font-family:var(--head);font-size:24px;font-weight:900;letter-spacing:2px;color:var(--text);}
+.aut-hero-sub{font-family:var(--mono);font-size:10px;color:var(--cyan);letter-spacing:1.5px;margin-top:2px;}
+.aut-hero-desc{font-size:12px;color:var(--text2);max-width:560px;line-height:1.8;margin-top:6px;}
+.aut-stats{display:flex;gap:32px;flex-wrap:wrap;justify-content:center;margin-top:14px;padding-top:14px;border-top:1px solid rgba(0,212,255,.15);}
+.aut-stat{display:flex;flex-direction:column;align-items:center;gap:2px;}
+.aut-stat-val{font-family:var(--head);font-size:22px;font-weight:900;color:var(--cyan);}
+.aut-stat-lbl{font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.8px;}
+/* ── Perfil cards (link-in-bio) ── */
+.authors-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;}
+.acard{background:var(--bg3);border:1px solid var(--border);border-radius:18px;padding:24px 20px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:0;transition:border-color .22s,transform .22s,box-shadow .22s;position:relative;overflow:hidden;}
+.acard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--ac,var(--cyan));opacity:.7;}
+.acard:hover{border-color:var(--ac,rgba(0,212,255,.35));transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.45),0 0 20px rgba(0,212,255,.08);}
+.acard-av{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,rgba(0,212,255,.22),rgba(59,130,246,.35));border:3px solid var(--ac,rgba(0,212,255,.45));display:flex;align-items:center;justify-content:center;font-family:var(--head);font-size:26px;font-weight:900;color:var(--ac,var(--cyan));margin-bottom:12px;box-shadow:0 0 18px rgba(0,212,255,.18);overflow:hidden;}
+.acard-av img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.acard-social{display:flex;gap:8px;justify-content:center;margin-bottom:12px;flex-wrap:wrap;}
+.acard-social a{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s,border-color .2s;text-decoration:none;color:var(--text2);}
+.acard-social a:hover{background:rgba(0,212,255,.15);border-color:rgba(0,212,255,.4);transform:scale(1.12);color:var(--cyan);}
+.acard-social a svg{width:15px;height:15px;fill:currentColor;}
+.acard-name{font-family:var(--head);font-size:15px;font-weight:900;color:var(--text);letter-spacing:.5px;line-height:1.25;margin-bottom:4px;}
+.acard-handle{font-family:var(--mono);font-size:10px;color:var(--ac,var(--cyan));margin-bottom:3px;}
+.acard-role{font-family:var(--mono);font-size:10px;color:var(--text3);margin-bottom:14px;}
+.acard-divider{width:40px;height:2px;background:var(--ac,var(--cyan));border-radius:2px;margin:0 auto 14px;opacity:.5;}
+.acard-icons{display:flex;gap:10px;justify-content:center;margin-bottom:16px;}
+.acard-icon{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:14px;transition:background .2s,transform .2s;cursor:default;}
+.acard-icon:hover{background:rgba(0,212,255,.12);transform:scale(1.1);}
+.acard-stat-row{display:flex;gap:14px;justify-content:center;margin-bottom:16px;padding:10px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);width:100%;}
+.acard-stat{display:flex;flex-direction:column;align-items:center;gap:1px;}
+.acard-stat-v{font-family:var(--head);font-size:14px;font-weight:900;color:var(--ac,var(--cyan));}
+.acard-stat-l{font-family:var(--mono);font-size:7.5px;color:var(--text3);letter-spacing:.5px;}
+.acard-link{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:9px 14px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);font-family:var(--mono);font-size:11px;color:var(--text2);font-weight:600;margin-bottom:7px;transition:background .18s,border-color .18s;}
+.acard-link:hover{background:rgba(0,212,255,.1);border-color:rgba(0,212,255,.35);color:var(--cyan);}
+.acard-link-primary{background:rgba(0,212,255,.1);border-color:rgba(0,212,255,.3);color:var(--ac,var(--cyan));}
 .lab-info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:18px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:18px;}
 .li-item{display:flex;flex-direction:column;gap:3px;}
 .li-lbl{font-family:var(--mono);font-size:10px;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;}
@@ -416,7 +501,7 @@ select option{background:var(--bg2);}
     </div>
     <div>
       <div class="logo-text">SGI<span>LAB</span></div>
-      <div class="logo-sub">LAB. CÓMPUTO FCE "II" · P5-206</div>
+      <div class="logo-sub" style="font-size:7.5px;letter-spacing:.8px;max-width:280px;white-space:normal;line-height:1.35;">LABORATORIO DE CÓMPUTO — FAC. CIENCIAS EMPRESARIALES "II" · P5-206</div>
     </div>
   </div>
   <nav>
@@ -436,6 +521,11 @@ select option{background:var(--bg2);}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>AUTORES
     </button>
   </nav>
+  <div class="header-clock">
+    <div class="clock-time" id="hdr-clock">--:--:--</div>
+    <div class="clock-date" id="hdr-date">--- -- ----</div>
+  </div>
+  <button class="theme-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Cambiar tema">🌙</button>
   <button class="ham" onclick="toggleMob()">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
   </button>
@@ -454,13 +544,16 @@ select option{background:var(--bg2);}
 <!-- ══ DASHBOARD ══ -->
 <div class="view active" id="view-dashboard">
   <div class="page-hd">
-    <div><div class="page-title">PANEL <span>PRINCIPAL</span></div><div class="page-sub">RESUMEN DEL INVENTARIO — LAB. CÓMPUTO FCE-II · P5-206 · 32 EQUIPOS</div></div>
-    <button class="btn btn-primary" onclick="showView('equipos');openModal()">
+    <div><div class="page-title">PANEL <span>PRINCIPAL</span></div><div class="page-sub">RESUMEN DEL INVENTARIO — LABORATORIO DE CÓMPUTO DE LA FACULTAD DE CIENCIAS EMPRESARIALES "II" · PABELLÓN 5 — AULA 206</div></div>
+    <button class="btn btn-ghost" disabled title="El laboratorio tiene 32 estaciones registradas — capacidad completa" style="opacity:.4;cursor:not-allowed;border-style:dashed;">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>NUEVO EQUIPO
+      <span style="font-size:9px;font-weight:400;opacity:.7;">— 32/32</span>
     </button>
   </div>
   <div class="stats" id="dash-stats"></div>
+  <div id="dash-charts" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:18px 0 6px;"></div>
   <div id="dash-obs"></div>
+  <div id="dash-activity" style="margin-top:16px;"></div>
 </div>
 
 <!-- ══ EQUIPOS ══ -->
@@ -471,23 +564,23 @@ select option{background:var(--bg2);}
       <button class="btn btn-ghost btn-sm" onclick="exportCSV()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>CSV
       </button>
-      <button class="btn btn-primary btn-sm" onclick="openModal()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>NUEVO
+      <button class="btn btn-ghost btn-sm" disabled title="Capacidad completa — 32/32 estaciones" style="opacity:.4;cursor:not-allowed;border-style:dashed;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>32/32
       </button>
     </div>
   </div>
   <div class="toolbar">
     <div class="search-box">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="text" id="s-inp" placeholder="Buscar código, IP, MAC, modelo..." oninput="renderEq()">
+      <input type="text" id="s-inp" placeholder="Buscar código, IP, MAC, modelo..." oninput="renderEq();checkFilters()">
     </div>
-    <select class="filter-sel" id="f-estado" onchange="renderEq()">
+    <select class="filter-sel" id="f-estado" onchange="renderEq();checkFilters()">
       <option value="all">Todos los estados</option>
       <option value="operativo">Operativo</option>
       <option value="falla">Con falla</option>
       <option value="mantenimiento">Mantenimiento</option>
     </select>
-    <select class="filter-sel" id="f-fila" onchange="renderEq()">
+    <select class="filter-sel" id="f-fila" onchange="renderEq();checkFilters()">
       <option value="all">Todas las filas</option>
       <option value="FILA 1">Fila 1</option><option value="FILA 2">Fila 2</option>
       <option value="FILA 3">Fila 3</option><option value="FILA 4">Fila 4</option>
@@ -495,7 +588,7 @@ select option{background:var(--bg2);}
       <option value="FILA 7">Fila 7</option><option value="FILA 8">Fila 8</option>
       <option value="FILA 9">Fila 9</option><option value="PRINCIPAL">Principal</option>
     </select>
-    <select class="filter-sel" id="f-sev" onchange="renderEq()">
+    <select class="filter-sel" id="f-sev" onchange="renderEq();checkFilters()">
       <option value="all">Toda severidad</option>
       <option value="crit">🔴 Crítico</option>
       <option value="alto">🟠 Alto</option>
@@ -503,6 +596,10 @@ select option{background:var(--bg2);}
       <option value="bajo">🟢 Bajo</option>
       <option value="ok">✅ Sin fallas</option>
     </select>
+    <button class="clear-filters-btn" id="clear-filters-btn" onclick="clearFilters()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12" height="12"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      LIMPIAR
+    </button>
     <div class="view-toggle">
       <button class="vt-btn active" id="vt-grid" onclick="setVM('grid')" title="Tarjetas">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
@@ -519,7 +616,7 @@ select option{background:var(--bg2);}
 <!-- ══ MAPA ══ -->
 <div class="view" id="view-mapa">
   <div class="page-hd">
-    <div><div class="page-title">MAPA DE <span>RED</span></div><div class="page-sub">TOPOLOGÍA FÍSICA — LAB. CÓMPUTO FCE &quot;II&quot; · P5-206</div></div>
+    <div><div class="page-title">MAPA DE <span>RED</span></div><div class="page-sub">TOPOLOGÍA FÍSICA — LABORATORIO DE CÓMPUTO DE LA FACULTAD DE CIENCIAS EMPRESARIALES "II" · PABELLÓN 5 — AULA 206</div></div>
   </div>
   <div id="mapa-cont"></div>
 </div>
@@ -527,12 +624,15 @@ select option{background:var(--bg2);}
 <!-- ══ REPORTES ══ -->
 <div class="view" id="view-reportes">
   <div class="page-hd">
-    <div><div class="page-title">PANEL DE <span>REPORTES</span></div><div class="page-sub">ANÁLISIS DEL ESTADO — LAB. CÓMPUTO FCE-II · P5-206</div></div>
+    <div><div class="page-title">PANEL DE <span>REPORTES</span></div><div class="page-sub">ANÁLISIS DEL ESTADO — LABORATORIO DE CÓMPUTO DE LA FACULTAD DE CIENCIAS EMPRESARIALES "II" · PABELLÓN 5 — AULA 206</div></div>
   </div>
   <div class="export-row">
     <button class="btn btn-orange btn-sm" onclick="exportPDF()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>EXPORTAR PDF
     </button>
+    <button class="btn btn-cyan btn-sm" onclick="exportQRLabels()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM17 17h3v3h-3zM14 20h3"/></svg>ETIQUETAS QR
+      </button>
     <button class="btn btn-green btn-sm" onclick="exportCSV()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>EXPORTAR CSV
     </button>
@@ -541,6 +641,9 @@ select option{background:var(--bg2);}
     </button>
     <button class="btn btn-ghost btn-sm" onclick="printReport()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>IMPRIMIR
+    </button>
+    <button class="btn btn-sm" style="background:rgba(167,139,250,.1);color:#a78bfa;border:1px solid rgba(167,139,250,.3);" onclick="captureMapaPNG()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>CAPTURA MAPA
     </button>
   </div>
   <div class="sev-legend" id="sev-legend"></div>
@@ -554,57 +657,156 @@ select option{background:var(--bg2);}
     <div><div class="page-title">EQUIPO DE <span>TRABAJO</span></div><div class="page-sub">REDES Y TELECOMUNICACIONES — INGENIERÍA DE SISTEMAS</div></div>
   </div>
   <div class="authors-wrap">
-    <div class="authors-hd-title">Autores del Proyecto</div>
-    <div class="authors-hd-sub">LAB. DE CÓMPUTO — FAC. CIENCIAS EMPRESARIALES "II" · P5-206 · 2026</div>
+
+    <!-- ── HERO ── -->
+    <div class="aut-hero">
+      <div class="aut-hero-logo">{&nbsp;}</div>
+      <div class="aut-hero-title">SGI<span style="color:var(--cyan);">LAB</span></div>
+      <div class="aut-hero-sub">@sgilab · Redes y Telecomunicaciones · UDH · 2026</div>
+      <div class="aut-hero-desc">
+        Sistema de Gestión de Inventario del Laboratorio de Cómputo de la Facultad de Ciencias Empresariales "II".<br>
+        Registro, monitoreo y análisis de los 32 equipos del Pabellón 5 — Aula 206.
+      </div>
+      <div class="aut-stats">
+        <div class="aut-stat"><span class="aut-stat-val">32</span><span class="aut-stat-lbl">equipos</span></div>
+        <div class="aut-stat"><span class="aut-stat-val">4</span><span class="aut-stat-lbl">estudiantes</span></div>
+        <div class="aut-stat"><span class="aut-stat-val">9</span><span class="aut-stat-lbl">filas</span></div>
+        <div class="aut-stat"><span class="aut-stat-val">CAT-6</span><span class="aut-stat-lbl">cableado</span></div>
+      </div>
+    </div>
+
+    <!-- ── PERFIL CARDS ── -->
     <div class="authors-grid">
-      <div class="acard">
-        <div class="acard-av">AF</div>
-        <div>
-          <div class="acard-name">Acosta Falcon, Marco Antonio</div>
-          <div class="acard-role">Estudiante de Ing. de Sistemas</div>
-          <div class="acard-code">📋 2023110559</div>
+      <div class="acard" style="--ac:#00d4ff;">
+        <div class="acard-av" style="border-color:rgba(0,212,255,.45);box-shadow:0 0 20px rgba(0,212,255,.12);">
+          <img src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/79e68281b896369c55c09895ec59d0e5~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=0c03f269&x-expires=1772622000&x-signature=yYfYf5rNR5jf9effAIFaWwB65M4%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my" alt="Marco Antonio Acosta Falcon">
+        </div>
+        <div class="acard-name">Marco Antonio<br>Acosta Falcon</div>
+        <div class="acard-handle" style="color:#00d4ff;">@AntonioAF-dev</div>
+        <div class="acard-role">Estudiante de Ingeniería de Sistemas</div>
+        <div class="acard-divider" style="background:#00d4ff;"></div>
+        <div class="acard-social">
+          <a href="https://www.youtube.com/@AntonioAFDev" target="_blank" title="YouTube" style="color:#ff0000;">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <a href="https://github.com/AntonioAF-dev" target="_blank" title="GitHub">
+            <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <a href="https://discord.com/users/702554085026430996" target="_blank" title="Discord" style="color:#5865F2;">
+            <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@antonioaf_dev" target="_blank" title="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+          </a>
+        </div>
+        <div class="acard-stat-row"><div class="acard-stat"><span class="acard-stat-v">2023</span><span class="acard-stat-l">Ingreso</span></div><div class="acard-stat"><span class="acard-stat-v">FI</span><span class="acard-stat-l">Facultad</span></div><div class="acard-stat"><span class="acard-stat-v">5to</span><span class="acard-stat-l">Ciclo</span></div></div>
+        <div class="acard-link acard-link-primary" style="background:rgba(0,212,255,.12);border-color:rgba(0,212,255,.45);color:#00d4ff;">
+          <span>🎓</span> Ing. de Sistemas — UDH
+        </div>
+        <div class="acard-link">
+          <span>📋</span> Cód. Estudiante: <strong style="color:#00d4ff;">2023110559</strong>
+        </div>
+        <div class="acard-link">
+          <span>🏛️</span> Redes y Telecomunicaciones
         </div>
       </div>
-      <div class="acard">
-        <div class="acard-av">AS</div>
-        <div>
-          <div class="acard-name">Aliaga Salas, H. Manuel</div>
-          <div class="acard-role">Estudiante de Ing. de Sistemas</div>
-          <div class="acard-code">📋 2023110541</div>
+
+      <div class="acard" style="--ac:#a855f7;">
+        <div class="acard-av" style="border-color:rgba(168,85,247,.45);box-shadow:0 0 20px rgba(168,85,247,.12);">
+          <img src="https://i.pinimg.com/236x/d0/f4/40/d0f4401f2d432c3df109576d7c1388fa.jpg" alt="Hayddyvar Manuel Aliaga Salas">
+        </div>
+        <div class="acard-name">Hector Manuel<br>Aliaga Salas</div>
+        <div class="acard-handle" style="color:#a855f7;">@aliaga.manuel</div>
+        <div class="acard-role">Estudiante de Ingeniería de Sistemas</div>
+        <div class="acard-divider" style="background:#a855f7;"></div>
+        <div class="acard-social">
+          <a href="https://github.com/ManuelUDH" target="_blank" title="GitHub">
+            <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        </div>
+        <div class="acard-stat-row"><div class="acard-stat"><span class="acard-stat-v">2023</span><span class="acard-stat-l">Ingreso</span></div><div class="acard-stat"><span class="acard-stat-v">FI</span><span class="acard-stat-l">Facultad</span></div><div class="acard-stat"><span class="acard-stat-v">5to</span><span class="acard-stat-l">Ciclo</span></div></div>
+        <div class="acard-link acard-link-primary" style="background:rgba(168,85,247,.12);border-color:rgba(168,85,247,.45);color:#a855f7;">
+          <span>🎓</span> Ing. de Sistemas — UDH
+        </div>
+        <div class="acard-link">
+          <span>📋</span> Cód. Estudiante: <strong style="color:#a855f7;">2023110541</strong>
+        </div>
+        <div class="acard-link">
+          <span>🏛️</span> Redes y Telecomunicaciones
         </div>
       </div>
-      <div class="acard">
-        <div class="acard-av">CG</div>
-        <div>
-          <div class="acard-name">Colqui Guillermo, Victor Daniel</div>
-          <div class="acard-role">Estudiante de Ing. de Sistemas</div>
-          <div class="acard-code">📋 2023120009</div>
+
+      <div class="acard" style="--ac:#22c55e;">
+        <div class="acard-av" style="border-color:rgba(34,197,94,.45);box-shadow:0 0 20px rgba(34,197,94,.12);">
+          <img src="https://i.pinimg.com/236x/d0/f4/40/d0f4401f2d432c3df109576d7c1388fa.jpg" alt="Victor Daniel Colqui Guillermo">
+        </div>
+        <div class="acard-name">Victor Daniel<br>Colqui Guillermo</div>
+        <div class="acard-handle" style="color:#22c55e;">@colqui.victor</div>
+        <div class="acard-role">Estudiante de Ingeniería de Sistemas</div>
+        <div class="acard-divider" style="background:#22c55e;"></div>
+        <div class="acard-social">
+          <a href="https://github.com/darkzen855" target="_blank" title="GitHub">
+            <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        </div>
+        <div class="acard-stat-row"><div class="acard-stat"><span class="acard-stat-v">2023</span><span class="acard-stat-l">Ingreso</span></div><div class="acard-stat"><span class="acard-stat-v">FI</span><span class="acard-stat-l">Facultad</span></div><div class="acard-stat"><span class="acard-stat-v">5to</span><span class="acard-stat-l">Ciclo</span></div></div>
+        <div class="acard-link acard-link-primary" style="background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.45);color:#22c55e;">
+          <span>🎓</span> Ing. de Sistemas — UDH
+        </div>
+        <div class="acard-link">
+          <span>📋</span> Cód. Estudiante: <strong style="color:#22c55e;">2023120009</strong>
+        </div>
+        <div class="acard-link">
+          <span>🏛️</span> Redes y Telecomunicaciones
         </div>
       </div>
-      <div class="acard">
-        <div class="acard-av">EB</div>
-        <div>
-          <div class="acard-name">Espinoza Berrospi, Diego Omar</div>
-          <div class="acard-role">Estudiante de Ing. de Sistemas</div>
-          <div class="acard-code">📋 2022110545</div>
+
+      <div class="acard" style="--ac:#f97316;">
+        <div class="acard-av" style="border-color:rgba(249,115,22,.45);box-shadow:0 0 20px rgba(249,115,22,.12);">
+          <img src="https://i.pinimg.com/236x/d0/f4/40/d0f4401f2d432c3df109576d7c1388fa.jpg" alt="Diego Omar Espinoza Berrospi">
+        </div>
+        <div class="acard-name">Diego Omar<br>Espinoza Berrospi</div>
+        <div class="acard-handle" style="color:#f97316;">@espinoza.diego</div>
+        <div class="acard-role">Estudiante de Ingeniería de Sistemas</div>
+        <div class="acard-divider" style="background:#f97316;"></div>
+        <div class="acard-social">
+          <a href="https://github.com/2022110545-cmyk" target="_blank" title="GitHub">
+            <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+        </div>
+        <div class="acard-stat-row"><div class="acard-stat"><span class="acard-stat-v">2022</span><span class="acard-stat-l">Ingreso</span></div><div class="acard-stat"><span class="acard-stat-v">FI</span><span class="acard-stat-l">Facultad</span></div><div class="acard-stat"><span class="acard-stat-v">5to</span><span class="acard-stat-l">Ciclo</span></div></div>
+        <div class="acard-link acard-link-primary" style="background:rgba(249,115,22,.12);border-color:rgba(249,115,22,.45);color:#f97316;">
+          <span>🎓</span> Ing. de Sistemas — UDH
+        </div>
+        <div class="acard-link">
+          <span>📋</span> Cód. Estudiante: <strong style="color:#f97316;">2022110545</strong>
+        </div>
+        <div class="acard-link">
+          <span>🏛️</span> Redes y Telecomunicaciones
         </div>
       </div>
     </div>
-    <div class="lab-info-grid">
-      <div class="li-item"><span class="li-lbl">Laboratorio</span><span class="li-val">Informática P5 — Aula 206</span></div>
-      <div class="li-item"><span class="li-lbl">Curso</span><span class="li-val">Redes y Telecomunicaciones</span></div>
-      <div class="li-item"><span class="li-lbl">Total Equipos</span><span class="li-val" id="aut-total">32 equipos</span></div>
-      <div class="li-item"><span class="li-lbl">Red LAN</span><span class="li-val">192.168.149.0/24</span></div>
-      <div class="li-item"><span class="li-lbl">Gateway</span><span class="li-val">192.168.150.2</span></div>
-      <div class="li-item"><span class="li-lbl">Cableado</span><span class="li-val">UTP CAT-6</span></div>
+
+    <!-- ── INFO LAB ── -->
+    <div style="margin-top:24px;padding:20px 24px;background:rgba(0,212,255,.04);border:1px solid rgba(0,212,255,.15);border-radius:12px;">
+      <div style="font-family:var(--head);font-size:12px;font-weight:700;letter-spacing:1.5px;color:var(--text2);margin-bottom:14px;">📍 INFORMACIÓN DEL LABORATORIO</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;">
+        <div style="padding:10px 12px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);"><span style="font-family:var(--mono);font-size:8px;color:var(--text3);display:block;letter-spacing:1px;margin-bottom:3px;">LABORATORIO</span><span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text);">Cómputo FCE "II"</span></div>
+        <div style="padding:10px 12px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);"><span style="font-family:var(--mono);font-size:8px;color:var(--text3);display:block;letter-spacing:1px;margin-bottom:3px;">UBICACIÓN</span><span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text);">Pabellón 5 — Aula 206</span></div>
+        <div style="padding:10px 12px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);"><span style="font-family:var(--mono);font-size:8px;color:var(--text3);display:block;letter-spacing:1px;margin-bottom:3px;">CURSO</span><span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--text);">Redes y Telecomunicaciones</span></div>
+        <div style="padding:10px 12px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);"><span style="font-family:var(--mono);font-size:8px;color:var(--text3);display:block;letter-spacing:1px;margin-bottom:3px;">RED LAN</span><span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--cyan);">192.168.149.0/24</span></div>
+        <div style="padding:10px 12px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);"><span style="font-family:var(--mono);font-size:8px;color:var(--text3);display:block;letter-spacing:1px;margin-bottom:3px;">GATEWAY</span><span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--cyan);">192.168.150.2</span></div>
+        <div style="padding:10px 12px;background:var(--bg3);border-radius:8px;border:1px solid var(--border);"><span style="font-family:var(--mono);font-size:8px;color:var(--text3);display:block;letter-spacing:1px;margin-bottom:3px;">CABLEADO</span><span style="font-family:var(--mono);font-size:11px;font-weight:700;color:var(--green);">UTP CAT-6</span></div>
+      </div>
     </div>
+
   </div>
 </div>
 
 </main>
 
 <footer style="text-align:center;padding:24px;border-top:1px solid var(--border);font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacing:1px;margin-top:40px;">
-  <span style="color:var(--cyan);">SGILAB</span> — Sistema de Gestión de Inventario · Lab. Cómputo FCE "II" · P5-206 · 2026
+  <span style="color:var(--cyan);">SGILAB</span> — Sistema de Gestión de Inventario · LABORATORIO DE CÓMPUTO DE LA FACULTAD DE CIENCIAS EMPRESARIALES "II" · PABELLÓN 5 — AULA 206 · 2026
 </footer>
 
 <div class="toast-box" id="toast-box"></div>
@@ -703,7 +905,7 @@ select option{background:var(--bg2);}
 // DATA & HELPERS
 // ══════════════════════════
 const STORE = 'sgilab_v4_2025';
-let equipos = [], editId = null, curPage = 1, vm = 'grid';
+let equipos = [], editId = null, curPage = 1, vm = 'grid', activeRowFilter = null;
 const PER = 12;
 
 const DATA = [{"id":"pc001","codigo":"LAB-P5-206 / 001","ubicacion":"FILA 1 - PC01","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.41","gateway":"192.168.150.2","mac":"00:22:4D:B0:E9:12","puerto_sw":"-","puerto_pp":"66B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc002","codigo":"LAB-P5-206 / 002","ubicacion":"FILA 1 - PC02","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"falla","ip":"192.168.149.42","gateway":"192.168.150.2","mac":"00:22:4D:B0:EB:7E","puerto_sw":"-","puerto_pp":"-","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc003","codigo":"LAB-P5-206 / 003","ubicacion":"FILA 1 - PC03","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"Con rayas","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"falla","ip":"192.168.149.43","gateway":"192.168.150.2","mac":"00:22:4D:B0:EA:E9","puerto_sw":"-","puerto_pp":"-","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO, PANTALLA CON RAYAS","solucion":""},{"id":"pc004","codigo":"LAB-P5-206 / 004","ubicacion":"FILA 1 - PC04","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"falla","ip":"192.168.149.44","gateway":"192.168.150.2","mac":"00:22:4D:B0:E5:63","puerto_sw":"-","puerto_pp":"-","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc005","codigo":"LAB-P5-206 / 005","ubicacion":"FILA 2 - PC05","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"falla","ip":"192.168.149.45","gateway":"192.168.150.2","mac":"38:D5:47:AC:7D:AD","puerto_sw":"-","puerto_pp":"64B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc006","codigo":"LAB-P5-206 / 006","ubicacion":"FILA 2 - PC06","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.46","gateway":"192.168.150.2","mac":"00:22:4D:B0:E9:8A","puerto_sw":"-","puerto_pp":"65B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc007","codigo":"LAB-P5-206 / 007","ubicacion":"FILA 2 - PC07","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.47","gateway":"192.168.150.2","mac":"00:22:4D:B0:E5:A4","puerto_sw":"-","puerto_pp":"63B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc008","codigo":"LAB-P5-206 / 008","ubicacion":"FILA 3 - PC08","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.48","gateway":"192.168.150.2","mac":"00:22:4D:B0:EC:30","puerto_sw":"-","puerto_pp":"59B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc009","codigo":"LAB-P5-206 / 009","ubicacion":"FILA 3 - PC09","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.49","gateway":"192.168.150.2","mac":"00:22:4D:B0:EF:74","puerto_sw":"-","puerto_pp":"60B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc010","codigo":"LAB-P5-206 / 010","ubicacion":"FILA 3 - PC10","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Logitech","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.50","gateway":"192.168.150.2","mac":"00:22:4D:B0:EF:F2","puerto_sw":"-","puerto_pp":"61B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc011","codigo":"LAB-P5-206 / 011","ubicacion":"FILA 3 - PC11","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Logitech","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.51","gateway":"192.168.150.2","mac":"00:22:4D:B0:E6:ED","puerto_sw":"-","puerto_pp":"62B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc012","codigo":"LAB-P5-206 / 012","ubicacion":"FILA 4 - PC12","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"falla","ip":"192.168.149.52","gateway":"192.168.150.2","mac":"FC:AA:14:A1:F9:7B","puerto_sw":"-","puerto_pp":"58B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc013","codigo":"LAB-P5-206 / 013","ubicacion":"FILA 4 - PC13","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.53","gateway":"192.168.150.2","mac":"00:22:4D:B0:EF:39","puerto_sw":"-","puerto_pp":"-","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc014","codigo":"LAB-P5-206 / 014","ubicacion":"FILA 4 - PC14","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"Con rayas","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.54","gateway":"192.168.150.2","mac":"00:22:4D:B0:E5:73","puerto_sw":"-","puerto_pp":"-","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO, PANTALLA CON RAYAS","solucion":""},{"id":"pc015","codigo":"LAB-P5-206 / 015","ubicacion":"FILA 4 - PC15","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.55","gateway":"192.168.150.2","mac":"00:22:4D:B0:E9:8E","puerto_sw":"-","puerto_pp":"-","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc016","codigo":"LAB-P5-206 / 016","ubicacion":"FILA 5 - PC16","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Logitech","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.56","gateway":"192.168.150.2","mac":"00:22:4D:B0:EF:9C","puerto_sw":"-","puerto_pp":"-","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc017","codigo":"LAB-P5-206 / 017","ubicacion":"FILA 5 - PC17","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.57","gateway":"192.168.150.2","mac":"00:22:4D:B0:ED:7F","puerto_sw":"-","puerto_pp":"38B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc018","codigo":"LAB-P5-206 / 018","ubicacion":"FILA 5 - PC18","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Logitech","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"falla","ip":"192.168.149.58","gateway":"192.168.150.2","mac":"00:22:4D:B0:E4:E7","puerto_sw":"-","puerto_pp":"39B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc019","codigo":"LAB-P5-206 / 019","ubicacion":"FILA 6 - PC19","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"falla","ip":"192.168.149.59","gateway":"192.168.150.2","mac":"00:22:4D:B0:EC:91","puerto_sw":"-","puerto_pp":"43B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc020","codigo":"LAB-P5-206 / 020","ubicacion":"FILA 6 - PC20","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.60","gateway":"192.168.150.2","mac":"00:22:4D:B0:E5:98","puerto_sw":"-","puerto_pp":"44B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc021","codigo":"LAB-P5-206 / 021","ubicacion":"FILA 6 - PC21","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.61","gateway":"192.168.150.2","mac":"00:22:4D:B0:E5:23","puerto_sw":"-","puerto_pp":"-","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc022","codigo":"LAB-P5-206 / 022","ubicacion":"FILA 6 - PC22","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"falla","ip":"192.168.149.62","gateway":"192.168.150.2","mac":"00:22:4D:B0:E7:23","puerto_sw":"-","puerto_pp":"-","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc023","codigo":"LAB-P5-206 / 023","ubicacion":"FILA 7 - PC23","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.63","gateway":"192.168.150.2","mac":"00:22:4D:B0:E7:27","puerto_sw":"-","puerto_pp":"46B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc024","codigo":"LAB-P5-206 / 024","ubicacion":"FILA 7 - PC24","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.64","gateway":"192.168.150.2","mac":"00:22:4D:B0:EC:16","puerto_sw":"-","puerto_pp":"47B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc025","codigo":"LAB-P5-206 / 025","ubicacion":"FILA 7 - PC25","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"falla","ip":"192.168.149.65","gateway":"192.168.150.2","mac":"00:22:4D:B0:EE:A3","puerto_sw":"-","puerto_pp":"45B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc026","codigo":"LAB-P5-206 / 026","ubicacion":"FILA 8 - PC26","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.66","gateway":"192.168.150.2","mac":"00:22:4D:B0:E6:44","puerto_sw":"-","puerto_pp":"49B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc027","codigo":"LAB-P5-206 / 027","ubicacion":"FILA 8 - PC27","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"falla","ip":"192.168.149.67","gateway":"192.168.150.2","mac":"00:22:4D:B0:E9:99","puerto_sw":"-","puerto_pp":"50B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc028","codigo":"LAB-P5-206 / 028","ubicacion":"FILA 8 - PC28","usuario":"Alumno","estado":"falla","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"-","teclado_estado":"bueno","mouse_marca":"-","mouse_estado":"bueno","ip":"192.168.149.68","gateway":"192.168.150.2","mac":"","puerto_sw":"-","puerto_pp":"48B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"CPU NO DA VIDEO — No enciende monitor","solucion":""},{"id":"pc029","codigo":"LAB-P5-206 / 029","ubicacion":"FILA 9 - PC29","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.69","gateway":"192.168.150.2","mac":"00:22:4D:B0:EB:C5","puerto_sw":"-","puerto_pp":"52B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc030","codigo":"LAB-P5-206 / 030","ubicacion":"FILA 9 - PC30","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"falla","ip":"192.168.149.70","gateway":"192.168.150.2","mac":"00:22:4D:B0:E7:53","puerto_sw":"-","puerto_pp":"53B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc031","codigo":"LAB-P5-206 / 031","ubicacion":"FILA 9 - PC31","usuario":"Alumno","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I7 - 4770","cpu_ghz":"3.40 GHz","ram_cap":"8 GB","ram_tipo":"DDR3","grafica":"2 GB","hdd_tipo":"SSD","hdd_cap":"240GB","monitor_marca":"Samsung","monitor_tam":"19\"","monitor_obs":"","teclado_marca":"Logitech","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"falla","ip":"192.168.149.71","gateway":"192.168.150.2","mac":"00:22:4D:B0:EA:79","puerto_sw":"-","puerto_pp":"54B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL, PC FALTA DE MANTENIMIENTO","solucion":""},{"id":"pc032","codigo":"LAB-P5-206 / 032","ubicacion":"PRINCIPAL - PC32","usuario":"Docente","estado":"operativo","cpu_marca":"Intel","cpu_modelo":"INTEL CORE I9 - 12900KF","cpu_ghz":"3.20 GHz","ram_cap":"16 GB","ram_tipo":"DDR4","grafica":"16 GB","hdd_tipo":"-","hdd_cap":"-","monitor_marca":"Samsung","monitor_tam":"24\"","monitor_obs":"","teclado_marca":"Microsoft","teclado_estado":"bueno","mouse_marca":"Microsoft","mouse_estado":"regular","ip":"192.168.149.72","gateway":"192.168.150.2","mac":"D8:5E:D3:42:FB:AE","puerto_sw":"-","puerto_pp":"37B/D","rack":"-","cable_tipo":"CAT-6","mant_fecha":"-","mant_tipo":"-","fallas":"FALLA DE MOUSE SCROLL","solucion":""}];
@@ -780,14 +982,18 @@ function renderDash(){
   const mFa=equipos.filter(e=>e.mouse_estado==='falla').length;
   const mReg=equipos.filter(e=>e.mouse_estado==='regular').length;
   const critN=equipos.filter(e=>getSev(e)==='crit').length;
+  const svC={crit:0,alto:0,medio:0,bajo:0,ok:0};
+  equipos.forEach(e=>svC[getSev(e)]++);
+  document.getElementById('dash-charts').innerHTML=''; // reset while building
   document.getElementById('dash-stats').innerHTML=`
-    <div class="stat c-cyan"><div class="stat-label">TOTAL EQUIPOS</div><div class="stat-val">${tot}</div><div class="stat-sub">Lab. FCE "II" · P5-206</div><div class="stat-icon">🖥️</div></div>
-    <div class="stat c-green"><div class="stat-label">CPU OPERATIVOS</div><div class="stat-val">${ok}</div><div class="stat-sub">${ok}/32 · ${Math.round(ok/tot*100)}% funcional</div><div class="stat-icon">✅</div></div>
-    <div class="stat c-red"><div class="stat-label">CRÍTICOS</div><div class="stat-val">${critN}</div><div class="stat-sub">Requieren atención urgente</div><div class="stat-icon">🚨</div></div>
-    <div class="stat c-orange"><div class="stat-label">MOUSE FALLA</div><div class="stat-val">${mFa}</div><div class="stat-sub">${mReg} en estado regular</div><div class="stat-icon">🖱️</div></div>
-    <div class="stat c-amber"><div class="stat-label">PERIFÉRICOS</div><div class="stat-val">${mFa+mReg}</div><div class="stat-sub">Con alguna observación</div><div class="stat-icon">⚠️</div></div>
-    <div class="stat c-blue"><div class="stat-label">RED LAN</div><div class="stat-val">32</div><div class="stat-sub">Nodos · 192.168.149.x</div><div class="stat-icon">📡</div></div>
+    <div class="stat c-cyan"><div class="stat-label">TOTAL EQUIPOS</div><div class="stat-val" data-count="${tot}">0</div><div class="stat-sub">LABORATORIO DE CÓMPUTO DE LA FACULTAD DE CIENCIAS EMPRESARIALES "II" · PABELLÓN 5 — AULA 206</div><div class="stat-icon">🖥️</div></div>
+    <div class="stat c-green"><div class="stat-label">CPU OPERATIVOS</div><div class="stat-val" data-count="${ok}">0</div><div class="stat-sub">${ok}/32 · ${Math.round(ok/tot*100)}% funcional</div><div class="stat-icon">✅</div></div>
+    <div class="stat c-red"><div class="stat-label">CRÍTICOS</div><div class="stat-val" data-count="${critN}">0</div><div class="stat-sub">Requieren atención urgente</div><div class="stat-icon">🚨</div></div>
+    <div class="stat c-orange"><div class="stat-label">MOUSE FALLA</div><div class="stat-val" data-count="${mFa}">0</div><div class="stat-sub">${mReg} en estado regular</div><div class="stat-icon">🖱️</div></div>
+    <div class="stat c-amber"><div class="stat-label">PERIFÉRICOS</div><div class="stat-val" data-count="${mFa+mReg}">0</div><div class="stat-sub">Con alguna observación</div><div class="stat-icon">⚠️</div></div>
+    <div class="stat c-blue"><div class="stat-label">RED LAN</div><div class="stat-val" data-count="32">0</div><div class="stat-sub">Nodos · 192.168.149.x</div><div class="stat-icon">📡</div></div>
   `;
+  animateCounters();
   const sevGroups={crit:[],alto:[],medio:[],bajo:[],ok:[]};
   equipos.forEach(e=>sevGroups[getSev(e)].push(e));
   let obsHTML='';
@@ -812,12 +1018,122 @@ function renderDash(){
       </div>
     </div>`;
   });
+  // ── CHARTS ──
+  const SEV_COLORS = {crit:'#ef4444',alto:'#f97316',medio:'#eab308',bajo:'#84cc16',ok:'#22c55e'};
+  const SEV_LABELS = {crit:'Crítico',alto:'Alto',medio:'Medio',bajo:'Bajo',ok:'Sin falla'};
+
+  // Donut SVG
+  function buildDonut(){
+    const total = Object.values(svC).reduce((a,b)=>a+b,0);
+    if(!total) return '';
+    const order=['crit','alto','medio','bajo','ok'];
+    const R=58, CX=70, CY=70, stroke=20;
+    const circ=2*Math.PI*R;
+    let offset=0, segments='';
+    order.forEach(k=>{
+      const v=svC[k]; if(!v) return;
+      const dash=(v/total)*circ;
+      segments+=`<circle cx="${CX}" cy="${CY}" r="${R}" fill="none"
+        stroke="${SEV_COLORS[k]}" stroke-width="${stroke}"
+        stroke-dasharray="${dash} ${circ-dash}"
+        stroke-dashoffset="${-offset+circ/4}"
+        style="filter:drop-shadow(0 0 4px ${SEV_COLORS[k]}60)">
+        <title>${SEV_LABELS[k]}: ${v}</title></circle>`;
+      offset+=dash;
+    });
+    const legend=order.filter(k=>svC[k]>0).map(k=>
+      `<div style="display:flex;align-items:center;gap:5px;padding:3px 0;">
+        <div style="width:9px;height:9px;border-radius:2px;background:${SEV_COLORS[k]};box-shadow:0 0 5px ${SEV_COLORS[k]};flex-shrink:0;"></div>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--text2);">${SEV_LABELS[k]}</span>
+        <span style="font-family:var(--mono);font-size:12px;font-weight:900;color:${SEV_COLORS[k]};margin-left:auto;">${svC[k]}</span>
+      </div>`).join('');
+    return `<div style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px;">
+      <div style="font-family:var(--head);font-size:12px;font-weight:700;letter-spacing:1.5px;color:var(--text2);">⚡ SEVERIDADES</div>
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+        <svg width="140" height="140" viewBox="0 0 140 140" style="flex-shrink:0;">
+          <circle cx="70" cy="70" r="${R}" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="${stroke}"/>
+          ${segments}
+          <text x="70" y="65" text-anchor="middle" fill="var(--text)" font-family="monospace" font-size="20" font-weight="900">${total}</text>
+          <text x="70" y="82" text-anchor="middle" fill="var(--text3)" font-family="monospace" font-size="9">EQUIPOS</text>
+        </svg>
+        <div style="flex:1;min-width:130px;">${legend}</div>
+      </div>
+    </div>`;
+  }
+
+  // Barras por fila
+  function buildRowBars(){
+    const filaMap = {
+      'FILA 1':[],'FILA 2':[],'FILA 3':[],'FILA 4':[],'FILA 5':[],'FILA 6':[],'FILA 7':[],'FILA 8':[],'FILA 9':[],'PRINCIPAL':[]
+    };
+    equipos.forEach(e=>{
+      const key=Object.keys(filaMap).find(f=>e.ubicacion.includes(f))||'PRINCIPAL';
+      filaMap[key].push(e);
+    });
+    const bars=Object.entries(filaMap).filter(([,v])=>v.length>0).map(([fila,list])=>{
+      const n=list.length;
+      const okN=list.filter(e=>e.estado==='operativo').length;
+      const faN=list.filter(e=>e.estado==='falla').length;
+      const pct=v=>Math.round(v/n*100);
+      const sevWorst=list.map(e=>getSev(e)).sort((a,b)=>['crit','alto','medio','bajo','ok'].indexOf(a)-['crit','alto','medio','bajo','ok'].indexOf(b))[0];
+      return `<div style="margin-bottom:8px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px;">
+          <span style="font-family:var(--mono);font-size:9px;color:var(--text2);font-weight:700;min-width:68px;">${fila}</span>
+          <span style="font-family:var(--mono);font-size:9px;color:var(--text3);">${n} PC · ${okN} op.</span>
+        </div>
+        <div style="display:flex;height:10px;border-radius:3px;overflow:hidden;background:rgba(255,255,255,.05);gap:1px;">
+          ${okN?`<div style="flex:${okN};background:#22c55e;box-shadow:0 0 4px #22c55e60;" title="Operativos: ${okN}"></div>`:''}
+          ${faN?`<div style="flex:${faN};background:#ef4444;box-shadow:0 0 4px #ef444460;" title="Falla: ${faN}"></div>`:''}
+        </div>
+      </div>`;
+    }).join('');
+    return `<div style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;">
+      <div style="font-family:var(--head);font-size:12px;font-weight:700;letter-spacing:1.5px;color:var(--text2);margin-bottom:12px;">📊 ESTADO POR FILA</div>
+      ${bars}
+      <div style="display:flex;gap:10px;margin-top:6px;padding-top:8px;border-top:1px solid var(--border);">
+        <div style="display:flex;align-items:center;gap:4px;"><div style="width:10px;height:10px;border-radius:2px;background:#22c55e;"></div><span style="font-family:var(--mono);font-size:9px;color:var(--text3);">Operativo</span></div>
+        <div style="display:flex;align-items:center;gap:4px;"><div style="width:10px;height:10px;border-radius:2px;background:#ef4444;"></div><span style="font-family:var(--mono);font-size:9px;color:var(--text3);">Falla</span></div>
+      </div>
+    </div>`;
+  }
+
+  // Barras PP (con/sin patch panel)
+  function buildPPBars(){
+    const conPP=equipos.filter(e=>e.puerto_pp&&e.puerto_pp!=='-').length;
+    const sinPP=equipos.length-conPP;
+    const tot=equipos.length;
+    return `<div style="background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px;">
+      <div style="font-family:var(--head);font-size:12px;font-weight:700;letter-spacing:1.5px;color:var(--text2);margin-bottom:14px;">🔌 PATCH PANEL</div>
+      <div style="margin-bottom:10px;">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+          <span style="font-family:var(--mono);font-size:10px;color:rgba(255,200,100,.9);">Con PP registrado</span>
+          <span style="font-family:var(--mono);font-size:12px;font-weight:900;color:rgba(255,200,100,.9);">${conPP}/${tot}</span>
+        </div>
+        <div style="height:10px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden;">
+          <div style="height:100%;width:${Math.round(conPP/tot*100)}%;background:rgba(255,200,100,.8);box-shadow:0 0 6px rgba(255,200,100,.4);border-radius:3px;transition:width .6s;"></div>
+        </div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+          <span style="font-family:var(--mono);font-size:10px;color:rgba(100,150,200,.7);">Sin PP registrado</span>
+          <span style="font-family:var(--mono);font-size:12px;font-weight:900;color:rgba(100,150,200,.7);">${sinPP}/${tot}</span>
+        </div>
+        <div style="height:10px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden;">
+          <div style="height:100%;width:${Math.round(sinPP/tot*100)}%;background:rgba(100,150,200,.5);border-radius:3px;transition:width .6s;"></div>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  document.getElementById('dash-charts').innerHTML=buildDonut()+buildRowBars()+buildPPBars();
+
   document.getElementById('dash-obs').innerHTML=`
     <div style="font-family:var(--head);font-size:16px;font-weight:700;letter-spacing:1.5px;margin-bottom:16px;color:var(--text);">
       CLASIFICACIÓN POR SEVERIDAD
       <span style="font-size:12px;font-weight:400;color:var(--text3);margin-left:8px;">Periféricos: ${mFa+mReg} con observaciones · CPU: ${fa}/32 con falla crítica</span>
     </div>
     ${obsHTML}`;
+  renderActivity();
 }
 
 // ══ EQUIPOS ══
@@ -856,7 +1172,9 @@ function goP(p){curPage=p;renderEq();window.scrollTo({top:0,behavior:'smooth'});
 
 function cardH(e){
   const s=getSev(e),sc=SEV_CFG[s];
-  return`<div class="eq-card e-${e.estado}" onclick="showDetail('${e.id}')">
+  const critClass=s==='crit'?'sev-card-crit':'';
+  const fallaTooltip=e.fallas&&e.fallas!=='-'?`<div class="card-tooltip"><span class="ct-title">⚠ FALLAS REGISTRADAS</span>${e.fallas}</div>`:'';
+  return`<div class="eq-card e-${e.estado} ${critClass}" onclick="showDetail('${e.id}')">
     <div class="card-head">
       <div><div class="card-code">${e.codigo}</div><div class="card-loc">${e.ubicacion} · ${e.usuario}</div></div>
       ${stBadge(e.estado)}
@@ -866,14 +1184,13 @@ function cardH(e){
       <div class="card-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="10" x2="6" y2="14"/><line x1="10" y1="10" x2="10" y2="14"/><line x1="14" y1="10" x2="14" y2="14"/><line x1="18" y1="10" x2="18" y2="14"/></svg><span><strong>${e.ram_cap} ${e.ram_tipo}</strong> · GPU: ${e.grafica||'—'}</span></div>
       <div class="card-spec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span>${e.monitor_marca} ${e.monitor_tam}${e.monitor_obs?' ⚠️':''}</span></div>
       <div class="card-spec" style="font-family:var(--mono);font-size:11px;">${fmtIP(e.ip)}</div>
-      ${e.fallas&&e.fallas!=='-'?`<div class="falla-chip ${sc.cls}" title="${e.fallas}">⚠ ${e.fallas}</div>`:''}
+      ${e.fallas&&e.fallas!=='-'?`<div class="falla-chip ${sc.cls}" style="position:relative;" title="${e.fallas}">⚠ ${e.fallas}${fallaTooltip}</div>`:''}
     </div>
     <div class="card-foot">
       <div>${sevBadge(e)}</div>
       <div class="card-actions" onclick="event.stopPropagation()">
         <button class="btn btn-cyan btn-xs" onclick="showDetail('${e.id}')">VER</button>
         <button class="btn btn-ghost btn-xs" onclick="openModal('${e.id}')">✏</button>
-        <button class="btn btn-danger btn-xs" onclick="delEq('${e.id}')">✕</button>
       </div>
     </div>
   </div>`;
@@ -892,7 +1209,7 @@ function tableH(list){
       <td class="td-mono" style="font-size:11px;color:rgba(255,200,100,.9);font-weight:700;">${e.puerto_pp&&e.puerto_pp!=='-'?e.puerto_pp:'—'}</td>
       <td>${perBadge(e.mouse_estado)}</td>
       <td>${sevBadge(e)}</td>
-      <td><div style="display:flex;gap:4px;"><button class="btn btn-cyan btn-xs" onclick="showDetail('${e.id}')">VER</button><button class="btn btn-ghost btn-xs" onclick="openModal('${e.id}')">✏</button><button class="btn btn-danger btn-xs" onclick="delEq('${e.id}')">✕</button></div></td>
+      <td><div style="display:flex;gap:4px;"><button class="btn btn-cyan btn-xs" onclick="showDetail('${e.id}')">VER</button><button class="btn btn-ghost btn-xs" onclick="openModal('${e.id}')">✏</button></div></td>
     </tr>`).join('')}
   </tbody></table></div>`;
 }
@@ -931,6 +1248,25 @@ function fpMoveTip(ev){
   t.style.left=x+'px';t.style.top=y+'px';
 }
 function fpHideTip(){const t=document.getElementById('fp-tip');if(t)t.classList.remove('on');}
+
+function setRowFilter(f){
+  activeRowFilter=f;
+  // Update button styles
+  const allBtn=document.getElementById('rfbtn-all');
+  if(allBtn){
+    ['rfbtn-all','rfbtn-1','rfbtn-2','rfbtn-3','rfbtn-4','rfbtn-5','rfbtn-6','rfbtn-7','rfbtn-8','rfbtn-9','rfbtn-PRINCIPAL'].forEach(id=>{
+      const b=document.getElementById(id);
+      if(!b)return;
+      b.classList.remove('rf-active');
+      b.style.fontWeight='600';
+      if(id==='rfbtn-all')b.style.background=f===null?'rgba(0,212,255,.3)':'rgba(0,212,255,.15)';
+    });
+    const active=f===null?'rfbtn-all':(typeof f==='number'?'rfbtn-'+f:'rfbtn-PRINCIPAL');
+    const ab=document.getElementById(active);
+    if(ab){ab.classList.add('rf-active');ab.style.fontWeight='900';ab.style.background='rgba(0,212,255,.35)';}
+  }
+  renderMapa();
+}
 
 function getPC(n){
   const pad=String(n).padStart(2,'0');
@@ -1053,7 +1389,16 @@ function renderMapa(){
     const sC=isFa?'var(--red)':isOk?'var(--green)':'var(--amber)';
     const bg=isDark?'rgba(2,14,30,.9)':'rgba(0,35,65,.5)';
     const sev=getSev(e);
-    return '<div class="cb cb-pc" style="background:'+bg+';border-color:'+cc+'50;border-bottom:3px solid '+cc+';'
+    // Row filter dimming
+    let rowFilt='';
+    if(activeRowFilter!==null){
+      const pcFila=e?e.ubicacion:'';
+      let match=false;
+      if(activeRowFilter==='PRINCIPAL') match=pcFila.includes('PRINCIPAL');
+      else match=pcFila.includes('FILA '+activeRowFilter);
+      rowFilt=match?'':'opacity:.18;filter:grayscale(.8);';
+    }
+    return '<div class="cb cb-pc" style="background:'+bg+';border-color:'+cc+'50;border-bottom:3px solid '+cc+';'+rowFilt+';'
       +(isFa?'box-shadow:inset 0 0 18px rgba(239,68,68,.18);':'')
       +(sev==='crit'?'animation:pulse-crit 2s infinite;':'')
       +'" onclick="showDetail(\''+e.id+'\')"'
@@ -1063,7 +1408,7 @@ function renderMapa(){
       +'<div class="cp-code" style="color:'+cc+';">'+lbl+'</div>'
       +'<div class="cp-icon">'+(isDoc?'👨‍🏫':'🖥️')+'</div>'
       +'<div class="cp-ip">'+'.'+e.ip.split('.').pop()+'</div>'
-      +'<div class="cp-dot" style="background:'+sC+';box-shadow:0 0 5px '+sC+';"></div>'
+      +'<div class="cp-dot" style="background:'+sC+';box-shadow:0 0 5px '+sC+';"></div>'      +((!e.puerto_pp||e.puerto_pp==='-')?'<div style="position:absolute;bottom:2px;right:2px;background:rgba(234,179,8,.18);border:1px solid rgba(234,179,8,.55);border-radius:3px;padding:0px 3px;font-family:monospace;font-size:6.5px;color:rgba(234,179,8,.9);font-weight:900;line-height:1.5;letter-spacing:.3px;" title="Sin Puerto Patch Panel registrado">SIN PP</div>':'')
       +'</div>';
   }
 
@@ -1151,7 +1496,7 @@ function renderMapa(){
 <div>
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px;">
     <div>
-      <div style="font-family:var(--head);font-size:18px;font-weight:700;letter-spacing:2px;">🏛️ PLANO DE RED — <span style="color:var(--cyan);">Lab. Cómputo FCE &quot;II&quot; · P5-206</span></div>
+      <div style="font-family:var(--head);font-size:18px;font-weight:700;letter-spacing:2px;">🏛️ PLANO DE RED — <span style="color:var(--cyan);">LABORATORIO DE CÓMPUTO DE LA FACULTAD DE CIENCIAS EMPRESARIALES "II"</span></div>
       <div style="font-family:var(--mono);font-size:11px;color:var(--text2);margin-top:3px;letter-spacing:.8px;">📐 Tablero 6 filas × 10 columnas &nbsp;·&nbsp; UTP CAT-6 &nbsp;·&nbsp; Hover sobre pieza = datos de red</div>
     </div>
     <div style="display:flex;gap:6px;flex-wrap:wrap;">
@@ -1159,6 +1504,19 @@ function renderMapa(){
       <span style="font-family:var(--mono);font-size:12px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.35);color:var(--red);padding:5px 12px;border-radius:20px;font-weight:700;">🔴 ${fa} con falla</span>
       <span style="font-family:var(--mono);font-size:12px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.25);color:var(--cyan);padding:5px 12px;border-radius:20px;font-weight:700;">📡 GW 192.168.150.2</span>
     </div>
+  </div>
+  <!-- Filtro por fila -->
+  <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:8px;">
+    <span style="font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:1px;margin-right:4px;">FILTRAR FILA:</span>
+    <button onclick="setRowFilter(null)" id="rfbtn-all"
+      style="font-family:var(--mono);font-size:9px;padding:4px 10px;border-radius:12px;border:1px solid rgba(0,212,255,.4);background:rgba(0,212,255,.15);color:var(--cyan);cursor:pointer;font-weight:700;transition:all .2s;"
+      onmouseover="this.style.background='rgba(0,212,255,.25)'" onmouseout="if(!this.classList.contains(\'rf-active\'))this.style.background='rgba(0,212,255,.15)'">TODAS</button>
+    ${[1,2,3,4,5,6,7,8,9].map(r=>`<button onclick="setRowFilter(${r})" id="rfbtn-${r}"
+      style="font-family:var(--mono);font-size:9px;padding:4px 10px;border-radius:12px;border:1px solid rgba(100,150,200,.3);background:rgba(100,150,200,.07);color:var(--text2);cursor:pointer;transition:all .2s;"
+      onmouseover="this.style.background='rgba(100,150,200,.2)'" onmouseout="this.style.background='rgba(100,150,200,.07)'">F${r}</button>`).join('')}
+    <button onclick="setRowFilter('PRINCIPAL')" id="rfbtn-PRINCIPAL"
+      style="font-family:var(--mono);font-size:9px;padding:4px 10px;border-radius:12px;border:1px solid rgba(168,85,247,.35);background:rgba(168,85,247,.08);color:var(--purple);cursor:pointer;transition:all .2s;"
+      onmouseover="this.style.background='rgba(168,85,247,.2)'" onmouseout="this.style.background='rgba(168,85,247,.08)'">DOCENTE</button>
   </div>
   <div class="chess-col-labels">
     <div class="chess-left-spacer" style="font-family:var(--mono);font-size:7px;color:var(--text3);display:flex;align-items:flex-end;justify-content:center;padding-bottom:2px;">ROSETA</div>
@@ -1394,14 +1752,14 @@ function renderMapa(){
       try{return Array.from(ss.cssRules).map(r=>r.cssText).join('\n');}catch{return '';}
     }).join('\n');
     const html = `<!DOCTYPE html><html><head><meta charset="UTF-8">
-      <title>Mapa de Red — FCE-II P5-206</title>
+      <title>Mapa de Red — LABORATORIO DE CÓMPUTO DE LA FACULTAD DE CIENCIAS EMPRESARIALES "II"</title>
       <style>
         body{background:#060a14;color:#e2e8f0;margin:0;padding:20px;font-family:monospace;}
         ${style}
         @media print{body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}}
       </style></head><body>
       <div style="font-family:var(--head,monospace);font-size:14px;font-weight:700;letter-spacing:2px;color:#00d4ff;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(0,212,255,.3);">
-        🏛️ MAPA DE RED — LAB. CÓMPUTO FCE "II" · P5-206 · ${new Date().toLocaleDateString('es-PE')}
+        🏛️ MAPA DE RED — LABORATORIO DE CÓMPUTO DE LA FACULTAD DE CIENCIAS EMPRESARIALES "II" · PABELLÓN 5 — AULA 206 · ${new Date().toLocaleDateString('es-PE')}
       </div>
       ${el.innerHTML}
       <script>window.onload=()=>{setTimeout(()=>{window.print();},600);}<\/script>
@@ -1420,6 +1778,7 @@ function renderMapa(){
 // ══ DETAIL ══
 function showDetail(id){
   const e=equipos.find(x=>x.id===id);if(!e)return;
+  logActivity(e,'Ficha consultada');
   document.getElementById('d-title').textContent=`FICHA TÉCNICA — ${e.codigo}`;
   document.getElementById('d-edit-btn').onclick=()=>{closeDetail();openModal(id);};
   document.getElementById('d-body').innerHTML=buildDetail(e);
@@ -1498,7 +1857,7 @@ function buildDetail(e){
         ${dr('Tipo',e.mant_tipo)}
       </div>
       <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;" onclick="closeDetail();openModal('${e.id}')">✏ EDITAR</button>
-      <button class="btn btn-danger btn-sm" style="width:100%;justify-content:center;" onclick="closeDetail();delEq('${e.id}')">✕ ELIMINAR</button>
+
     </div>
   </div>`;
 }
@@ -1558,15 +1917,21 @@ function saveEq(){
   const dup=equipos.find(e=>e.codigo===d.codigo&&e.id!==editId);
   if(dup){se('fe-cod','Código ya existe');ok=false;}
   if(!ok)return;
-  if(editId){const i=equipos.findIndex(e=>e.id===editId);equipos[i]={...equipos[i],...d};toast('Equipo actualizado','success');}
-  else{equipos.push({id:gid(),...d});toast('Equipo registrado','success');}
+  if(editId){
+    const i=equipos.findIndex(e=>e.id===editId);
+    equipos[i]={...equipos[i],...d};
+    logActivity(equipos[i],'Equipo editado');
+    toast('Equipo actualizado','success');
+  }
+  else{
+    const newEq={id:gid(),...d};
+    equipos.push(newEq);
+    logActivity(newEq,'Equipo registrado');
+    toast('Equipo registrado','success');
+  }
   save();closeModal();renderEq();renderDash();
 }
-function delEq(id){
-  const e=equipos.find(x=>x.id===id);
-  if(!e||!confirm(`¿Eliminar ${e.codigo}?`))return;
-  equipos=equipos.filter(x=>x.id!==id);save();renderEq();renderDash();toast(`${e.codigo} eliminado`,'info');
-}
+function delEq(id){ /* Eliminación deshabilitada — laboratorio con 32 estaciones fijas */ }
 
 // ══ REPORTS ══
 function renderReportes(){
@@ -1708,7 +2073,7 @@ function exportPDF(){
       <td style="font-size:10px;max-width:180px;">${e.fallas||'—'}</td>
       <td>${SEV_CFG[s]?.label||'—'}</td>
     </tr>`}).join('');
-  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Inventario Lab. FCE-II · P5-206</title>
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Inventario — LABORATORIO DE CÓMPUTO DE LA FACULTAD DE CIENCIAS EMPRESARIALES "II"</title>
     <style>
       body{font-family:Arial,sans-serif;font-size:11px;color:#111;margin:20px;}
       h1{font-size:18px;margin-bottom:4px;} h2{font-size:14px;color:#1e40af;margin:16px 0 8px;}
@@ -1727,7 +2092,7 @@ function exportPDF(){
       @media print{button{display:none;}}
     </style></head><body>
     <div class="hd">
-      <h1>📋 SGILAB — Lab. Cómputo FCE "II" · P5-206</h1>
+      <h1>📋 SGILAB — LABORATORIO DE CÓMPUTO DE LA FACULTAD DE CIENCIAS EMPRESARIALES "II"</h1>
       <div class="sub">Redes y Telecomunicaciones · Ingeniería de Sistemas · Generado: ${now}</div>
       <div class="sub">Autores: Acosta Falcon M.A. · Aliaga Salas H.M. · Colqui Guillermo V.D. · Espinoza Berrospi D.O.</div>
     </div>
@@ -1752,19 +2117,282 @@ function exportPDF(){
       <th>Mouse</th><th>Fallas / Observaciones</th><th>Severidad</th>
     </tr></thead><tbody>${rows}</tbody></table>
     <div style="margin-top:16px;text-align:center;font-size:10px;color:#888;">
-      Lab. Cómputo FCE "II" · P5-206 · Redes y Telecom. · ${now} · Pág. <span id="pn"></span>
+      LABORATORIO DE CÓMPUTO DE LA FACULTAD DE CIENCIAS EMPRESARIALES "II" · Redes y Telecom. · ${now} · Pág. <span id="pn"></span>
     </div>
     <script>window.onload=function(){window.print();}<\/script>
   </body></html>`);
   w.document.close();
   toast('Generando PDF para impresión...','info');
 }
+function exportQRLabels(){
+  const w=window.open('','_blank','width=900,height=700');
+  const now=new Date().toLocaleDateString('es-PE');
+  // Generar QR en canvas y convertir a dataURL para cada PC
+  // Usamos la lib QRCode ya cargada
+  const tmpDiv=document.createElement('div');
+  tmpDiv.style.cssText='position:fixed;left:-9999px;top:0;';
+  document.body.appendChild(tmpDiv);
+
+  const cards=equipos.map(e=>{
+    const qDiv=document.createElement('div');
+    tmpDiv.appendChild(qDiv);
+    const pp=e.puerto_pp&&e.puerto_pp!=='-'?e.puerto_pp:'—';
+    const ip=e.ip||'—';
+    const num=e.codigo.split('/').pop()?.trim()||'';
+    try{
+      new QRCode(qDiv,{
+        text:`SGILAB|${e.codigo}|${ip}|${pp}|${e.ubicacion}`,
+        width:100,height:100,colorDark:'#1e3a5f',colorLight:'#ffffff',
+        correctLevel:QRCode.CorrectLevel.M
+      });
+    }catch(err){}
+    const cv=qDiv.querySelector('canvas');
+    const qrData=cv?cv.toDataURL('image/png'):'';
+    return {e,qrData,pp,ip,num};
+  });
+  document.body.removeChild(tmpDiv);
+
+  const labelHTML=cards.map(({e,qrData,pp,ip,num})=>`
+    <div class="label">
+      <div class="label-header">
+        <div class="label-code">${e.codigo}</div>
+        <div class="label-status ${e.estado==='operativo'?'st-ok':'st-fa'}">${e.estado.toUpperCase()}</div>
+      </div>
+      <div class="label-body">
+        ${qrData?`<img src="${qrData}" width="80" height="80" alt="QR">`:'<div class="qr-placeholder">QR</div>'}
+        <div class="label-info">
+          <div class="lrow"><span class="lk">Ubicación</span><span class="lv">${e.ubicacion}</span></div>
+          <div class="lrow"><span class="lk">IP</span><span class="lv mono">${ip}</span></div>
+          <div class="lrow"><span class="lk">Patch Panel</span><span class="lv mono pp">${pp}</span></div>
+          <div class="lrow"><span class="lk">MAC</span><span class="lv mono mac">${e.mac||'—'}</span></div>
+        </div>
+      </div>
+      <div class="label-footer">Lab. Cómputo FCE "II" · P5-206 · ${now}</div>
+    </div>`).join('');
+
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8">
+    <title>Etiquetas QR — Lab. FCE-II P5-206</title>
+    <style>
+      *{box-sizing:border-box;margin:0;padding:0;}
+      body{font-family:Arial,sans-serif;background:#fff;padding:10mm;}
+      h2{font-size:13px;font-weight:700;margin-bottom:8px;color:#1e3a5f;text-align:center;}
+      .sub{font-size:9px;color:#666;text-align:center;margin-bottom:12px;}
+      .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6mm;}
+      .label{border:1.5px solid #1e3a5f;border-radius:6px;padding:6px;page-break-inside:avoid;background:#fff;}
+      .label-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;padding-bottom:4px;border-bottom:1px solid #e5e7eb;}
+      .label-code{font-weight:800;font-size:10px;color:#1e3a5f;letter-spacing:.5px;}
+      .label-status{font-size:8px;font-weight:700;padding:1px 6px;border-radius:10px;}
+      .st-ok{background:#dcfce7;color:#166534;border:1px solid #86efac;}
+      .st-fa{background:#fecaca;color:#991b1b;border:1px solid #fca5a5;}
+      .label-body{display:flex;gap:6px;align-items:flex-start;}
+      .label-body img{border-radius:4px;border:1px solid #e5e7eb;flex-shrink:0;}
+      .qr-placeholder{width:80px;height:80px;background:#f0f9ff;border:1px dashed #93c5fd;display:flex;align-items:center;justify-content:center;font-size:9px;color:#3b82f6;border-radius:4px;}
+      .label-info{flex:1;display:flex;flex-direction:column;gap:2px;}
+      .lrow{display:flex;justify-content:space-between;gap:4px;padding:1.5px 0;border-bottom:1px solid #f3f4f6;}
+      .lrow:last-child{border-bottom:none;}
+      .lk{font-size:8px;color:#6b7280;min-width:60px;}
+      .lv{font-size:8.5px;font-weight:600;color:#111827;text-align:right;}
+      .lv.mono{font-family:monospace;}
+      .lv.pp{color:#92400e;font-weight:800;}
+      .lv.mac{font-size:7.5px;}
+      .label-footer{font-size:7px;color:#9ca3af;text-align:center;margin-top:4px;padding-top:3px;border-top:1px solid #f3f4f6;}
+      @page{margin:10mm;size:A4 portrait;}
+      @media print{body{padding:0;} button{display:none!important;}}
+    </style></head><body>
+    <h2>🏷️ ETIQUETAS DE INVENTARIO — LABORATORIO DE CÓMPUTO FCE "II" · P5-206</h2>
+    <div class="sub">Generado: ${now} · ${equipos.length} equipos · Redes y Telecomunicaciones</div>
+    <div style="text-align:center;margin-bottom:10px;">
+      <button onclick="window.print()" style="background:#1e3a5f;color:#fff;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:700;">🖨️ Imprimir / Guardar PDF</button>
+    </div>
+    <div class="grid">${labelHTML}</div>
+    <script>setTimeout(()=>{},500);<\/script>
+  </body></html>`);
+  w.document.close();
+  toast('Generando etiquetas QR...','info');
+}
+
 function printReport(){window.print();toast('Abriendo diálogo de impresión...','info');}
 function dl(href,name){const a=document.createElement('a');a.href=href;a.download=name;a.click();}
 
 // ── OVERLAYS ──
 document.getElementById('ov-detail').addEventListener('click',function(e){if(e.target===this)closeDetail();});
 document.getElementById('ov-form').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+// ══════════════════════════════════
+// MEJORA 1: MODO CLARO / OSCURO
+// ══════════════════════════════════
+function toggleTheme(){
+  const isLight=document.body.classList.toggle('light-mode');
+  localStorage.setItem('sgilab_theme',isLight?'light':'dark');
+  document.getElementById('theme-toggle-btn').textContent=isLight?'🌙':'☀️';
+}
+(function initTheme(){
+  if(localStorage.getItem('sgilab_theme')==='light'){
+    document.body.classList.add('light-mode');
+    const btn=document.getElementById('theme-toggle-btn');
+    if(btn)btn.textContent='🌙';
+  }
+})();
+
+// ══════════════════════════════════
+// MEJORA 2: RELOJ EN VIVO
+// ══════════════════════════════════
+function tickClock(){
+  const now=new Date();
+  const pad=n=>String(n).padStart(2,'0');
+  const h=pad(now.getHours()),m=pad(now.getMinutes()),s=pad(now.getSeconds());
+  const days=['DOM','LUN','MAR','MIÉ','JUE','VIE','SÁB'];
+  const months=['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+  const d=days[now.getDay()],day=pad(now.getDate()),mon=months[now.getMonth()],yr=now.getFullYear();
+  const cEl=document.getElementById('hdr-clock');
+  const dEl=document.getElementById('hdr-date');
+  if(cEl)cEl.textContent=`${h}:${m}:${s}`;
+  if(dEl)dEl.textContent=`${d} ${day} ${mon} ${yr}`;
+}
+tickClock();
+setInterval(tickClock,1000);
+
+// ══════════════════════════════════
+// MEJORA 3: LIMPIAR FILTROS
+// ══════════════════════════════════
+function checkFilters(){
+  const q=(document.getElementById('s-inp')?.value||'');
+  const est=document.getElementById('f-estado')?.value||'all';
+  const fila=document.getElementById('f-fila')?.value||'all';
+  const sev=document.getElementById('f-sev')?.value||'all';
+  const active=q||est!=='all'||fila!=='all'||sev!=='all';
+  const btn=document.getElementById('clear-filters-btn');
+  if(btn)btn.classList.toggle('visible',active);
+}
+function clearFilters(){
+  const si=document.getElementById('s-inp');if(si)si.value='';
+  const fe=document.getElementById('f-estado');if(fe)fe.value='all';
+  const ff=document.getElementById('f-fila');if(ff)ff.value='all';
+  const fs=document.getElementById('f-sev');if(fs)fs.value='all';
+  checkFilters();
+  renderEq();
+  toast('Filtros eliminados','info');
+}
+
+// ══════════════════════════════════
+// MEJORA 7: CONTADORES ANIMADOS
+// ══════════════════════════════════
+function animateCounters(){
+  const els=document.querySelectorAll('.stat-val[data-count]');
+  els.forEach(el=>{
+    const target=parseInt(el.getAttribute('data-count'),10)||0;
+    if(target===0){el.textContent='0';return;}
+    const dur=900,step=16;
+    const inc=target/(dur/step);
+    let cur=0;
+    const timer=setInterval(()=>{
+      cur=Math.min(cur+inc,target);
+      el.textContent=Math.round(cur);
+      if(cur>=target){el.textContent=target;clearInterval(timer);}
+    },step);
+  });
+}
+
+// ══════════════════════════════════
+// MEJORA 8: CAPTURA MAPA PNG
+// ══════════════════════════════════
+function captureMapaPNG(){
+  // Navegar al mapa primero
+  showView('mapa');
+  setTimeout(()=>{
+    const mapaEl=document.getElementById('mapa-cont');
+    if(!mapaEl||!mapaEl.innerHTML.trim()){
+      toast('El mapa no tiene contenido para capturar','error');
+      return;
+    }
+    // Usar html2canvas desde CDN
+    if(typeof html2canvas==='undefined'){
+      const sc=document.createElement('script');
+      sc.src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+      sc.onload=()=>doCapture(mapaEl);
+      sc.onerror=()=>{
+        // Fallback: abrir ventana de impresión
+        toast('Captura iniciada — usa Ctrl+P y guarda como PDF/imagen','info');
+        window.print();
+      };
+      document.head.appendChild(sc);
+    } else {
+      doCapture(mapaEl);
+    }
+  },400);
+}
+function doCapture(el){
+  toast('Capturando mapa... un momento','info');
+  html2canvas(el,{
+    backgroundColor:getComputedStyle(document.body).getPropertyValue('--bg').trim()||'#06090f',
+    scale:2,useCORS:true,logging:false
+  }).then(canvas=>{
+    const a=document.createElement('a');
+    const now=new Date();
+    const ts=`${now.getFullYear()}${String(now.getMonth()+1).padStart(2,'0')}${String(now.getDate()).padStart(2,'0')}_${String(now.getHours()).padStart(2,'0')}${String(now.getMinutes()).padStart(2,'0')}`;
+    a.download=`SGILAB_Mapa_Red_${ts}.png`;
+    a.href=canvas.toDataURL('image/png');
+    a.click();
+    toast('✅ Mapa exportado como PNG','success');
+  }).catch(()=>{
+    toast('Error al capturar — intenta con Ctrl+P','error');
+  });
+}
+
+// ══════════════════════════════════
+// MEJORA 10: ACTIVIDAD RECIENTE
+// ══════════════════════════════════
+const ACTIVITY_KEY='sgilab_activity';
+function logActivity(e,action){
+  try{
+    let log=JSON.parse(localStorage.getItem(ACTIVITY_KEY)||'[]');
+    const s=getSev(e);
+    const dotColors={crit:'#ef4444',alto:'#f97316',medio:'#eab308',bajo:'#84cc16',ok:'#22c55e'};
+    log.unshift({id:e.id,codigo:e.codigo,ubicacion:e.ubicacion,action,estado:e.estado,sev:s,color:dotColors[s],ts:Date.now()});
+    if(log.length>10)log=log.slice(0,10);
+    localStorage.setItem(ACTIVITY_KEY,JSON.stringify(log));
+  }catch{}
+}
+function renderActivity(){
+  const cont=document.getElementById('dash-activity');
+  if(!cont)return;
+  let log=[];
+  try{log=JSON.parse(localStorage.getItem(ACTIVITY_KEY)||'[]');}catch{}
+  if(!log.length){
+    cont.innerHTML=`<div class="activity-panel"><div class="activity-title">🕐 ACTIVIDAD RECIENTE</div><div class="activity-empty">Sin actividad registrada aún.<br>Edita o consulta equipos para ver el historial.</div></div>`;
+    return;
+  }
+  const items=log.map(a=>{
+    const rel=timeAgo(a.ts);
+    return`<div class="activity-item" onclick="showDetail('${a.id}')">
+      <div class="activity-dot" style="background:${a.color};box-shadow:0 0 5px ${a.color};"></div>
+      <div class="activity-info">
+        <div class="activity-code">${a.codigo}</div>
+        <div class="activity-desc">${a.action} · ${a.ubicacion}</div>
+      </div>
+      <div class="activity-time">${rel}</div>
+    </div>`;
+  }).join('');
+  cont.innerHTML=`<div class="activity-panel">
+    <div class="activity-title">
+      <span>🕐 ACTIVIDAD RECIENTE</span>
+      <button onclick="clearActivity()" style="background:transparent;border:none;cursor:pointer;font-family:var(--mono);font-size:9px;color:var(--text3);letter-spacing:.5px;padding:2px 6px;border-radius:4px;border:1px solid var(--border);">LIMPIAR</button>
+    </div>
+    <div class="activity-list">${items}</div>
+  </div>`;
+}
+function clearActivity(){
+  localStorage.removeItem(ACTIVITY_KEY);
+  renderActivity();
+  toast('Historial borrado','info');
+}
+function timeAgo(ts){
+  const diff=Math.floor((Date.now()-ts)/1000);
+  if(diff<60)return'ahora mismo';
+  if(diff<3600)return`hace ${Math.floor(diff/60)}m`;
+  if(diff<86400)return`hace ${Math.floor(diff/3600)}h`;
+  return`hace ${Math.floor(diff/86400)}d`;
+}
 
 // ── INIT ──
 load();
